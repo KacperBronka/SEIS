@@ -6,7 +6,7 @@
 
 ## 📺 Demo
 
-[![SEIS Demo](https://img.shields.io/badge/▶%20Obejrzyj%20demo-YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=YT_VIDEO_GOES_HERE)
+[![SEIS Demo]](https://drive.google.com/file/d/1zsxIopdb7d5FE-vpqlloKU_fPbso_mHw/view)
 
 ---
 
