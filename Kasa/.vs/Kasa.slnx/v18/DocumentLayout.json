@@ -1,0 +1,119 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hp\\source\\repos\\Kasa\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\autoclosemessage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\autoclosemessage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\autoclosemessage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\autoclosemessage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|c:\\users\\hp\\source\\repos\\kasa\\kasa\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AA3F734-D133-AEFE-FA69-D9A650A6D70C}|Kasa\\Kasa.csproj|solutionrelative:kasa\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Kasa\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\MainWindow.xaml",
+              "RelativeToolTip": "Kasa\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-18T09:52:04.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Kasa\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Kasa\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T09:52:01.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AutoCloseMessage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AutoCloseMessage.xaml.cs",
+              "RelativeDocumentMoniker": "Kasa\\AutoCloseMessage.xaml.cs",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AutoCloseMessage.xaml.cs",
+              "RelativeToolTip": "Kasa\\AutoCloseMessage.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAmwAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T11:08:14.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AutoCloseMessage.xaml",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AutoCloseMessage.xaml",
+              "RelativeDocumentMoniker": "Kasa\\AutoCloseMessage.xaml",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AutoCloseMessage.xaml",
+              "RelativeToolTip": "Kasa\\AutoCloseMessage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-21T11:07:52.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Kasa\\AssemblyInfo.cs",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\AssemblyInfo.cs",
+              "RelativeToolTip": "Kasa\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T10:13:43.458Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\App.xaml",
+              "RelativeDocumentMoniker": "Kasa\\App.xaml",
+              "ToolTip": "C:\\Users\\hp\\source\\repos\\Kasa\\Kasa\\App.xaml",
+              "RelativeToolTip": "Kasa\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-18T10:13:49.361Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

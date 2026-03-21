@@ -1,0 +1,181 @@
+﻿<Window x:Class="ProductApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sklep Stonka" Height="520" Width="780"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF5F5F5"
+        FontFamily="Segoe UI">
+
+	<Window.Resources>
+
+		<Style x:Key="BiedronkaButton" TargetType="Button">
+			<Setter Property="Background" Value="#FFD32F2F"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Padding" Value="12,8"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                BorderThickness="0"
+                                SnapsToDevicePixels="True">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FFB71C1C"/>
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter Property="Background" Value="#FF7F0000"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Background" Value="#FFBDBDBD"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style TargetType="ComboBox">
+			<Setter Property="Height" Value="38"/>
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="Padding" Value="8,4"/>
+			<Setter Property="BorderBrush" Value="#FFBDBDBD"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Background" Value="White"/>
+		</Style>
+
+		<Style TargetType="ListBox" x:Key="BiedronkaListBox">
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="BorderBrush" Value="#FFEEEEEE"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Padding" Value="4"/>
+			<Setter Property="SnapsToDevicePixels" Value="True"/>
+		</Style>
+
+		<Style TargetType="ListBoxItem">
+			<Setter Property="Padding" Value="10,8"/>
+			<Setter Property="BorderBrush" Value="#FFEEEEEE"/>
+			<Setter Property="BorderThickness" Value="0,0,0,1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+							<ContentPresenter/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#FFFDE8E8"/>
+							</Trigger>
+							<Trigger Property="IsSelected" Value="True">
+								<Setter Property="Background" Value="#FFFCD0D0"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="64"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- Górny pasek nagłówka -->
+		<Border Grid.Row="0" Background="#FFD32F2F">
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="24,0">
+				<TextBlock Text="🛒" FontSize="26" VerticalAlignment="Center" Margin="0,0,10,0"/>
+				<TextBlock Text="Sklep Stonka" FontSize="22" FontWeight="Bold"
+                           Foreground="White" VerticalAlignment="Center"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Główna zawartość -->
+		<Grid Grid.Row="1" Margin="24,20,24,20">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="240"/>
+				<ColumnDefinition Width="20"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<!-- Lewa kolumna – dodawanie produktu -->
+			<Border Grid.Column="0"
+                    Background="White"
+                    BorderBrush="#FFEEEEEE"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="16">
+				<StackPanel VerticalAlignment="Top">
+					<TextBlock Text="Dodaj produkt"
+                               FontSize="15" FontWeight="SemiBold"
+                               Foreground="#FF424242"
+                               Margin="0,0,0,16"/>
+
+					<TextBlock Text="Wybierz produkt:" FontSize="12"
+                               Foreground="#FF757575" Margin="0,0,0,6"/>
+					<ComboBox x:Name="ProductComboBox" Margin="0,0,0,20"/>
+
+					<Button Content="＋  Dodaj do koszyka"
+                            Click="AddProduct_Click"
+                            Height="42"
+                            Style="{StaticResource BiedronkaButton}"/>
+				</StackPanel>
+			</Border>
+
+			<!-- Prawa kolumna – lista produktów -->
+			<Border Grid.Column="2"
+                    Background="White"
+                    BorderBrush="#FFEEEEEE"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="16">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Row="0"
+                               Text="Koszyk"
+                               FontSize="15" FontWeight="SemiBold"
+                               Foreground="#FF424242"
+                               Margin="0,0,0,12"/>
+
+					<ListBox Grid.Row="1"
+                             x:Name="CartListBox"
+                             Style="{StaticResource BiedronkaListBox}"
+                             BorderThickness="1"
+                             BorderBrush="#FFEEEEEE"/>
+
+					<!-- Podsumowanie -->
+					<Border Grid.Row="2"
+                            Background="#FFF9FBE7"
+                            BorderBrush="#FFAED581"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="14,10"
+                            Margin="0,12,0,0">
+						<TextBlock x:Name="TotalTextBlock"
+                                   FontWeight="Bold"
+                                   FontSize="16"
+                                   Foreground="#FF33691E"
+                                   TextAlignment="Center"/>
+					</Border>
+				</Grid>
+			</Border>
+		</Grid>
+	</Grid>
+</Window>

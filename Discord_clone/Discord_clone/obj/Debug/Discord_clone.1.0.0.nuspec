@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Discord_clone</id>
+    <version>1.0.0</version>
+    <authors>Discord_clone</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net10.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net10.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\hp\source\repos\Discord_clone\Discord_clone\bin\Debug\net10.0-windows\Discord_clone.runtimeconfig.json" target="lib\net10.0-windows7.0\Discord_clone.runtimeconfig.json" />
+    <file src="C:\Users\hp\source\repos\Discord_clone\Discord_clone\bin\Debug\net10.0-windows\Discord_clone.dll" target="lib\net10.0-windows7.0\Discord_clone.dll" />
+  </files>
+</package>
