@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <!-- Decorative top circle -->
+    <View
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="-60dp"
+        android:layout_marginEnd="-60dp"
+        android:background="@drawable/bg_circle_top"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="40dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="28dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:background="@android:color/transparent"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="Back"/>
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="28dp"
+                    android:background="#7C3AED"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Family Group"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A2E"
+                    android:fontFamily="sans-serif-medium"/>
+
+                <!-- Debug toggle button -->
+                <Button
+                    android:id="@+id/btnDebugToggle"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="🐛"
+                    android:textSize="16sp"
+                    android:background="@android:color/transparent"
+                    android:stateListAnimator="@null"
+                    android:padding="0dp"
+                    android:contentDescription="Toggle debug panel"/>
+            </LinearLayout>
+
+            <!-- ════════════════════════════════════════════
+                 STATE 1 — NOT IN A FAMILY
+                 ════════════════════════════════════════════ -->
+            <LinearLayout
+                android:id="@+id/layoutNoFamily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Illustration card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#F3F0FF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="28dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="👨‍👩‍👧‍👦"
+                            android:textSize="52sp"
+                            android:layout_marginBottom="12dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No family group yet"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A2E"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Create a group as a parent to monitor your child's activity, or join an existing group with a code."
+                            android:textSize="13sp"
+                            android:textColor="#6B7280"
+                            android:gravity="center"
+                            android:lineSpacingMultiplier="1.4"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btnCreateFamily"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Create Family Group"
+                    android:textSize="15sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_btn_purple"
+                    android:stateListAnimator="@null"
+                    android:layout_marginBottom="12dp"/>
+
+                <Button
+                    android:id="@+id/btnGoJoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Join with a Code"
+                    android:textSize="15sp"
+                    android:textColor="#7C3AED"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_btn_outline_purple"
+                    android:stateListAnimator="@null"/>
+            </LinearLayout>
+
+            <!-- ════════════════════════════════════════════
+                 CREATE FORM (shown over no-family state)
+                 ════════════════════════════════════════════ -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardCreateForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Family Group"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A2E"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Family name"
+                        android:textSize="12sp"
+                        android:textColor="#6B7280"
+                        android:layout_marginBottom="6dp"/>
+
+                    <EditText
+                        android:id="@+id/editFamilyName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="e.g. The Kowalski Family"
+                        android:textSize="14sp"
+                        android:background="@drawable/bg_edit_text"
+                        android:paddingHorizontal="14dp"
+                        android:inputType="textCapWords"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your email (for activity notifications)"
+                        android:textSize="12sp"
+                        android:textColor="#6B7280"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="#000000"/>
+
+                    <EditText
+                        android:id="@+id/editParentEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:hint="parent@email.com"
+                        android:textSize="14sp"
+                        android:background="@drawable/bg_edit_text"
+                        android:paddingHorizontal="14dp"
+                        android:inputType="textEmailAddress"
+                        android:layout_marginBottom="24dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnCancelCreate"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="Cancel"
+                            android:textSize="14sp"
+                            android:textColor="#7C3AED"
+                            android:background="@android:color/transparent"
+                            android:stateListAnimator="@null"
+                            android:layout_marginEnd="8dp"/>
+
+                        <Button
+                            android:id="@+id/btnSubmitCreate"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="2"
+                            android:text="Create Group"
+                            android:textSize="14sp"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_purple"
+                            android:stateListAnimator="@null"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ════════════════════════════════════════════
+                 JOIN FORM
+                 ════════════════════════════════════════════ -->
+            <LinearLayout
+                android:id="@+id/layoutJoinFamily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Join a Family"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A1A2E"
+                            android:layout_marginBottom="6dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ask your parent for their family join code."
+                            android:textSize="13sp"
+                            android:textColor="#6B7280"
+                            android:layout_marginBottom="20dp"/>
+
+                        <EditText
+                            android:id="@+id/editJoinCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:hint="Enter join code"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:fontFamily="monospace"
+                            android:letterSpacing="0.2"
+                            android:background="@drawable/bg_edit_text"
+                            android:paddingHorizontal="14dp"
+                            android:inputType="text"
+                            android:layout_marginBottom="20dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btnCancelJoin"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:text="Cancel"
+                                android:textSize="14sp"
+                                android:textColor="#7C3AED"
+                                android:background="@android:color/transparent"
+                                android:stateListAnimator="@null"
+                                android:layout_marginEnd="8dp"/>
+
+                            <Button
+                                android:id="@+id/btnSubmitJoin"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="2"
+                                android:text="Send Request"
+                                android:textSize="14sp"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:background="@drawable/bg_btn_purple"
+                                android:stateListAnimator="@null"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- ════════════════════════════════════════════
+                 STATE 2 — IN A FAMILY
+                 ════════════════════════════════════════════ -->
+            <LinearLayout
+                android:id="@+id/layoutHasFamily"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Family header card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="6dp"
+                    app:cardBackgroundColor="#7C3AED">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:id="@+id/txtFamilyName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="My Family"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            android:layout_marginBottom="4dp"/>
+
+                        <TextView
+                            android:id="@+id/txtFamilyRole"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Parent · Admin"
+                            android:textSize="12sp"
+                            android:textColor="#DDD6FE"
+                            android:layout_marginBottom="20dp"/>
+
+                        <!-- Join code display -->
+                        <TextView
+                            android:id="@+id/txtFamilyJoinInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FAMILY JOIN CODE"
+                            android:textSize="10sp"
+                            android:letterSpacing="0.15"
+                            android:textColor="#C4B5FD"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:id="@+id/txtFamilyCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="——"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="monospace"
+                            android:letterSpacing="0.15"/>
+
+                        <TextView
+                            android:id="@+id/txtFamilyShareInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Share this code with your children"
+                            android:textSize="11sp"
+                            android:textColor="#C4B5FD"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Members list -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MEMBERS"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.12"
+                    android:textStyle="bold"
+                    android:textColor="#9CA3AF"
+                    android:layout_marginBottom="10dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFFFF">
+
+                    <LinearLayout
+                        android:id="@+id/memberListContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Pending requests (parent only) -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardPendingRequests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#FFFBEB">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⏳"
+                                android:textSize="16sp"
+                                android:layout_marginEnd="8dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pending Join Requests"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="#92400E"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/pendingContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <!-- DEBUG PANEL — tap the bug button to show/hide -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/debugPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="#1A1A2E">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Network Log"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="#C4B5FD"/>
+
+                            <Button
+                                android:id="@+id/btnDebugCopy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="Copy"
+                                android:textSize="10sp"
+                                android:textColor="#C4B5FD"
+                                android:background="@android:color/transparent"
+                                android:stateListAnimator="@null"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="0dp"/>
+
+                            <Button
+                                android:id="@+id/btnDebugClear"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="Clear"
+                                android:textSize="10sp"
+                                android:textColor="#F87171"
+                                android:background="@android:color/transparent"
+                                android:stateListAnimator="@null"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="0dp"/>
+                        </LinearLayout>
+
+                        <ScrollView
+                            android:id="@+id/debugScroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp">
+
+                            <TextView
+                                android:id="@+id/debugLog"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="(waiting for requests...)"
+                                android:textSize="10sp"
+                                android:textColor="#A5F3FC"
+                                android:fontFamily="monospace"
+                                android:lineSpacingMultiplier="1.3"
+                                android:padding="4dp"/>
+                        </ScrollView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/pendingName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Unknown"
+        android:textSize="14sp"
+        android:textColor="#1A1A2E"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnApprove"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="✓"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_btn_purple"
+        android:stateListAnimator="@null"
+        android:paddingHorizontal="14dp"
+        android:layout_marginStart="8dp"/>
+
+    <Button
+        android:id="@+id/btnDecline"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="✕"
+        android:textSize="14sp"
+        android:textColor="#EF4444"
+        android:background="@android:color/transparent"
+        android:stateListAnimator="@null"
+        android:paddingHorizontal="10dp"/>
+</LinearLayout>

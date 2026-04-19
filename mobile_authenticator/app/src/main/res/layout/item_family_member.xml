@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <!-- Avatar -->
+    <FrameLayout
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/bg_avatar"
+        android:layout_marginEnd="12dp">
+
+        <TextView
+            android:id="@+id/memberInitials"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="JK"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/memberName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jan Kowalski"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A2E"/>
+
+        <TextView
+            android:id="@+id/memberRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="parent"
+            android:textSize="12sp"
+            android:textColor="#9CA3AF"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+    <!-- Role badge -->
+    <TextView
+        android:id="@+id/memberRoleBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="👑"
+        android:textSize="16sp"/>
+    <Button
+        android:id="@+id/btnRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="✕"
+        android:textSize="12sp"
+        android:minWidth="32dp"
+        android:minHeight="32dp"
+        android:visibility="gone"/>
+</LinearLayout>

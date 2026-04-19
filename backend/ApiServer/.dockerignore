@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+database.jsonnode_modules
+npm-debug.log
+Dockerfile
+docker-compose.yml
+.git
+.gitignore

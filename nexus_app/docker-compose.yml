@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: nexus_db
+    restart: always
+    environment:
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: nexus_secret
+      POSTGRES_DB: nexus_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus -d nexus_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: ./app
+    container_name: nexus_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://nexus:nexus_secret@db:5432/nexus_db
+      SEIS_API_URL: http://130.61.44.50:2000/users/verify-age
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+      - /app/.next
+
+  adminer:
+    image: adminer
+    container_name: nexus_adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

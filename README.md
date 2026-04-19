@@ -1,117 +1,118 @@
-# SEIS — Single Endpoint ID Service
+# SEIS - Signle Endpoint ID Service
 
-> **Koniec z wysyłaniem dowodów osobistych.** SEIS zastępuje przesyłanie skanów dokumentów tożsamości jednorazowym kodem weryfikacyjnym — szybko, bezpiecznie i bez udostępniania wrażliwych danych.
+**SEIS** to system zwiększający bezpieczeństwo danych podczas weryfikacji wieku i tożsamości online, który ma na celu dbać o **anonimowość** i **wygodę** użytkownika.
 
----
+Zamiast przesyłać skan dowodu, użytkownik generuje jednorazowy kod w aplikajci. Platforma (np. Discord) wysyła ten kod do systemu państwowego, który weryfikuje kryterium wiekowe i zwraca wyłącznie odpowiedź „tak/nie”, bez ujawniania jakichkolwiek danych osobowych użytkownika. 
 
-## 📺 Demo
+<div style="background-color: #00000012; padding: 20px 0; display: flex; margin-block: 20px; justify-content: space-around; align-items:center;">
+  <img src=".github/seis2.svg" style="height: 80px"/>
+  <img src=".github/hackcarpathia.png" style="width:170px; aspect-ratio:initial;"/>
+</div>
 
-[![SEIS Demo]](https://drive.google.com/file/d/1zsxIopdb7d5FE-vpqlloKU_fPbso_mHw/view)
 
----
-
-## 🧩 Czym jest SEIS?
-
-SEIS (Single Endpoint ID Service) to usługa weryfikacji tożsamości nowej generacji. Zamiast przesyłać skan lub zdjęcie dowodu osobistego do każdego serwisu z osobna, użytkownik generuje **jednorazowy kod weryfikacyjny**, który potwierdza jego tożsamość — bez ujawniania danych dokumentu.
-
-### Problem, który rozwiązujemy
-
-| Dotychczas                               | Z SEIS                                  |
-| ---------------------------------------- | --------------------------------------- |
-| Użytkownik wysyła skan dowodu          | Użytkownik wysyła kod weryfikacyjny   |
-| Dane dokumentu trafiają do wielu miejsc | Dane pozostają wyłącznie w SEIS      |
-| Ryzyko wycieku danych                    | Zero ekspozycji wrażliwych danych      |
-| Długi proces weryfikacji                | Weryfikacja w sekundy                   |
-| Brak kontroli nad swoimi danymi          | Pełna kontrola po stronie użytkownika |
+![Apache](https://img.shields.io/badge/Apache--2.0-green?style=for-the-badge)
+![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Android studio](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
+![mariadb](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![docker](https://img.shields.io/badge/Docker%20Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 ---
 
-## ⚙️ Jak to działa?
+## O projekcie
 
-```
-┌─────────────┐     1. Żądanie weryfikacji     ┌──────────────┐
-│   Serwis X  │ ─────────────────────────────► │     SEIS     │
-│  (partner)  │                                │   Endpoint   │
-└─────────────┘ ◄───────────────────────────── └──────┬───────┘
-       │          4. Wynik: verified/rejected          │
-       │                                               │ 2. Generowanie kodu
-       │                                               ▼
-       │                                       ┌──────────────┐
-       │         3. Użytkownik wpisuje kod      │  Użytkownik  │
-       └───────────────────────────────────────│  (aplikacja) │
-                                               └──────────────┘
-```
+Wideo: https://youtube.com/shorts/6B33ywocC9Q?feature=share
 
-1. **Partner** (serwis, firma) wysyła żądanie weryfikacji do SEIS.
-2. **SEIS** generuje jednorazowy kod i wysyła go do użytkownika (SMS / aplikacja / e-mail).
-3. **Użytkownik** wprowadza kod w interfejsie partnera.
-4. **SEIS** potwierdza tożsamość — partner otrzymuje wynik `verified` lub `rejected`, bez żadnych danych osobowych.
+Prezentacja: https://drive.google.com/file/d/1O6MbuWFnuKipe0fa4I92AFEwTUp27ujz/view?usp=drive_link
 
----
+## Privacy by design
+- Podczas weryfikacji serwer SEIS przekazuje platformom trzecim jedynie informacje o tym, czy użytkownik spełnia podane wymaganie wiekowe
+- Serwis nie przechowuje informacji na temat platform, które użytkownik odwiedzał
+- Kod jest aktywny 5 minut i wymaga potwierdzenia
 
-## 🚀 Szybki start
+## Jak to działa?
+Uproszczony diagram prezentujący działanie **serwisu SEIS**
+<center>
+<img src=".github/request.-diagramsvg.svg">
+</center>
 
----
+## System tokenów
+Podczas weryfikacji użytkownika generowany jest unikalny token, który następnie zostaje rozdzielony między dwa niezależne serwery — serwer SEIS oraz serwer serwisu zewnętrznego — **przy czym żaden z nich nie posiada pełnego obrazu tożsamości użytkownika.**
 
-## 🔌 API — Przykład użycia
+Serwer SEIS przechowuje powiązanie tokenu z tożsamością użytkownika oraz datą jego wygenerowania, natomiast serwer serwisu zewnętrznego wiąże ten sam token wyłącznie z kontem użytkownika na swojej platformie. Oba zbiory danych są od siebie izolowane i samodzielnie nie pozwalają na identyfikację osoby.
+Połączenie obu baz — a tym samym odtworzenie pełnej ścieżki między użytkownikiem a jego aktywnością na platformie — jest możliwe wyłącznie w ramach formalnego postępowania śledczego i wymaga jednoczesnego dostępu do obu serwerów.
 
-### Sprawdzenie wyniku weryfikacji
+Takie podejście realizuje dwa pozornie sprzeczne cele: ochronę prywatności użytkownika w codziennym użytkowaniu oraz możliwość skutecznego reagowania na nadużycia przez uprawnione organy, gdy zajdzie taka potrzeba
+<center>
+<img alt="Token diagram" src=".github/token-diagram.svg">
+</center>
 
-```http
-GET /users/verify-age?code={code_id}
-```
+## Funkcje rodzinne
 
-**Odpowiedź:**
+Z myślą o rodzicach, którzy chcą monitorować aktywność swoich dzieci w systemie SEIS, wdrożono funkcję grup rodzinnych. Po dodaniu dziecka do takiej grupy, rodzic otrzymuje powiadomienie e-mail zawierające informację o platformie, na której doszło do rejestracji za każdym razem, gdy dziecko skorzysta z procesu weryfikacji.
 
-```json
-{
-  "age_check": true,
-  "error": null
-}
-```
+Przykładowy schemat rodziny w systemie
 
----
+<center>
+<img alt="Przykładowy schemat rodziny" src=".github/family-diagram.svg">
+</center>
 
-## 🛡️ Bezpieczeństwo
+## Moduł AI
 
-- **Zero-knowledge** — SEIS nigdy nie przesyła danych dokumentu do partnera.
-- **Kody jednorazowe** — każdy kod wygasa po użyciu lub po upływie czasu ważności.
-- **Szyfrowanie end-to-end** — komunikacja wyłącznie przez HTTPS/TLS 1.3.
-- **Audyt dostępu** — pełne logi weryfikacji dostępne dla użytkownika.
-- **RODO/GDPR** — architektura zaprojektowana zgodnie z zasadą privacy by design.
+Moduł AI został zaprojektowany jako odpowiedź na wyzwania związane z nadużyciami, takimi jak próby weryfikacji cudzych kont czy automatyczne generowanie dużej liczby zapytań przez boty. Jego zadaniem jest zwiększenie bezpieczeństwa i wiarygodności systemu przy jednoczesnym zachowaniu możliwie najwyższego poziomu anonimowości użytkowników.
 
----
+Analizator AI SEIS działa wyłącznie na danych nieosobowych - takich jak wzorce czasowe czy statusy weryfikacji - i nie przetwarza informacji pozwalających na identyfikację konkretnej osoby. Co istotne, system nie ingeruje bezpośrednio w konta użytkowników: nie posiada uprawnień do ich blokowania ani nakładania ograniczeń. Jego funkcja sprowadza się do wykrywania potencjalnie nieprawidłowych zachowań i oznaczania ich do dalszej oceny.
 
-## 📁 Struktura projektu
+<center>
+<img alt="" src=".github/ai-diagram.svg">
+</center>
 
-```
-seis/
-├── src/
-│   ├── api/          # Endpointy REST
-│   ├── core/         # Logika weryfikacji i generowania kodów
-│   ├── services/     # Integracje (SMS, e-mail, push)
-│   └── utils/        # Pomocnicze funkcje
-├── tests/
-├── docs/             # Dokumentacja API (OpenAPI)
-├── .env.example
-├── docker-compose.yml
-└── README.md
+## Łatwość implementacji
+
+Zgodnie z nazwą, aplikacja opiera się na pojedynczym endpoincie, co sprawia, że implementacja sprowadza się do wysłania jednego zapytania przy procesie weryfikacji wieku. 
+
+Bardziej szczegółowe implementacje znajdują się w [przykładach](#demonstracyjne-serwisy).
+
+```js
+// (w przykładzie serwis SEIS zahostowany na domenie `seis.net`)
+const code = "123456"
+const response = await fetch("http://seis.net/users/verify-age", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ "requested_age": 13, "meta": "facebook.com", "code": code }),
+});
 ```
 
----
+## Struktura projektu
 
-## 📄 Licencja
+Kazdy moduł zawiera plik `README.md`, który konkretniej opisuje jego funkcjonalności oraz instrukcję uruchomienia.
 
-Projekt objęty licencją [APACHE 2.0](./LICENSE).
+### SEIS
 
----
+- `backend`
+  - `ApiServer` - serwer REST API obsługujący całą logikę systemu
+  - `AiAnalyzer` - dodatkowy moduł umożliwiający analizę bazy danych pod kątem podejrzanych zachowań przy pomocy lokalnego AI
+- `mobile_authenticator` - aplikacja użytkownika, główny moduł
 
-## 📬 Kontakt
+### Demonstracyjne serwisy
 
-Pytania? Napisz do nas: **hello@seis.dev** lub otwórz [Issue](../../issues/new).
+Przykładowe aplikacje 
 
----
+- `nexus_app` - aplikacja z przykładem rejestracji użytkownika
+- `self_checkout` - system kasy samoobsługowej
+  - `Kasa` - interfejs kasy samoobsługowej
+  - `NFC_Reader` - aplikacja mobilna obsługująca odczytywanie danych NFC
 
-<p align="center">
-  <sub>Zbudowane z myślą o prywatności użytkowników. SEIS — Twoja tożsamość, Twoje dane.</sub>
-</p>
+## Autorzy
+
+- [Karol Szelc](https://github.com/plaszel)
+- [Kacper Bronka](https://github.com/kacperbronka)
+- [Maciej Michalik](https://github.com/janngo27)
+- [Sebastian Drabik](https://github.com/sebastiandrabik)
+
+## Użyte narzędzia
+
+- W projekcie użyto AI: [claude ai](claude.ai), [chatgpt](chat.openai.com), [github copilot](https://github.com/features/copilot)
+- Diagramy i infografiki: [draw.io](draw.io)
+- Montaż wideo: Da Vinci Resolve
