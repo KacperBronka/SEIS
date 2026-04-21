@@ -104,7 +104,13 @@ Przykładowe aplikacje
   - `Kasa` - interfejs kasy samoobsługowej
   - `NFC_Reader` - aplikacja mobilna obsługująca odczytywanie danych NFC
 
+## Plan rowzwoju projektu
+
+- weryfikacja wiekszej ilosci danych niz tylko wiek(np. plci, bycia uczniem, itp...) na tej samej zasadzie jak teraz
+
 ## Autorzy
+
+Drużyna **Coup de grâce** w składzie:
 
 - [Karol Szelc](https://github.com/plaszel)
 - [Kacper Bronka](https://github.com/kacperbronka)
