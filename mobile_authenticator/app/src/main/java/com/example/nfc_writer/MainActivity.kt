@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         var messageToSend: String = "Domyslna wiadomosc"
     }
 
-    private val SERVER_BASE = "http://130.61.44.50:2000"
+    private val SERVER_BASE = "https://seis.chickenkiller.com:443"
     private val SOCKET_URL = SERVER_BASE
 
     val userData = JSONObject()
